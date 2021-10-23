@@ -1,0 +1,37 @@
+.boton-crear {
+  background-color: #5a1294;
+  color: #ffffff;
+  *ngIf: "!loading";
+}
+
+mat-card {
+  width: 50%;
+}
+.mat-column-id {
+  width: 32px;
+  border-right: 1px solid currentColor;
+
+  text-align: center;
+}
+.mat-column-licencePlate {
+  width: 32px;
+  border-right: 1px solid currentColor;
+  text-align: center;
+}
+.mat-column-numberOfSeats{
+  width: 32px ;
+  border-right: 1px solid currentColor;
+  text-align: center;
+}
+.mat-column-model {
+  width: 32px;
+  border-right: 1px solid currentColor;
+  text-align: center;
+}
+
+.mat-column-option {
+  width: 32px;
+  text-align: center;
+}
+
+

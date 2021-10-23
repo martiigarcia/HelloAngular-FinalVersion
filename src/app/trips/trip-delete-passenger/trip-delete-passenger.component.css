@@ -1,0 +1,10 @@
+mat-card {
+  width: 50%;
+}
+
+.boton {
+  background-color: #5a1294;
+  color: #ffffff;
+  *ngIf: "!loading";
+}
+

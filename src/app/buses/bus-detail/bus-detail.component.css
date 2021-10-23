@@ -1,0 +1,13 @@
+.boton-crear {
+  background-color: #5a1294;
+  color: #ffffff;
+  *ngIf: "!loading";
+}
+
+.input-form {
+  display: flex;
+}
+
+mat-card {
+  width: 50%;
+}

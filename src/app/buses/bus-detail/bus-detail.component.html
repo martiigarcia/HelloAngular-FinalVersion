@@ -1,0 +1,74 @@
+<mat-card [formGroup]="formBus" *ngIf="!loading">
+
+  <!-- información de la patente-->
+  <mat-form-field appearance="legacy" class="input-form">
+    <mat-label>Patente:</mat-label>
+    <input matInput formControlName="licensePlate">
+    <ng-container *ngIf="fc.licensePlate.invalid &&(fc.licensePlate.dirty || fc.licensePlate.touched)">
+      <mat-error *ngIf="fc.licensePlate.errors?.required">
+        Este campo es requerido.
+      </mat-error>
+      <mat-error *ngIf="fc.licensePlate.errors?.minlength">
+        Este campo requiere mas de 6 caracteres.
+      </mat-error>
+    </ng-container>
+  </mat-form-field>
+
+  <!-- información de los asientos -->
+  <mat-form-field appearance="legacy" class="input-form">
+    <mat-label>Asientos :</mat-label>
+    <input matInput formControlName="numberOfSeats">
+    <ng-container *ngIf="fc.numberOfSeats.invalid &&(fc.numberOfSeats.dirty || fc.numberOfSeats.touched)">
+      <mat-error *ngIf="fc.numberOfSeats.errors?.required">
+        Este campo es requerido.
+      </mat-error>
+
+    </ng-container>
+
+  </mat-form-field>
+
+  <!-- información de la marca -->
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Marca:</mat-label>
+      <mat-select matInput formControlName="brand" (selectionChange)="onChange($event)">
+
+        <mat-option *ngFor="let brand of brands" [value]="brand.showName()">
+          {{brand.showName()}}
+        </mat-option>
+      </mat-select>
+      <mat-hint *ngIf="(fc.id.value!==null)">La Marca que posee actualmente es:{{nameBrand}}</mat-hint>
+    </mat-form-field>
+  </div>
+  <br>
+  <!-- información del modelo -->
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Modelo:</mat-label>
+      <mat-select matInput formControlName="model">
+
+        <mat-option *ngFor="let modelo of models" [value]="modelo.showName()">
+          {{modelo.showName()}}
+        </mat-option>
+      </mat-select>
+      <ng-container *ngIf="fc.model.invalid &&(fc.model.dirty || fc.model.touched)">
+        <mat-error *ngIf="fc.model.errors?.required">
+          Este campo es requerido.
+        </mat-error>
+
+      </ng-container>
+
+      <mat-hint *ngIf="(fc.id.value!==null)">El Modelo que posee actualmente es:{{nameModel}}</mat-hint>
+    </mat-form-field>
+  </div>
+  <br>
+
+
+  <div>
+    <button mat-button (click)="goToBack()">Volver</button>
+    <button mat-button color="primary" (click)="save()"
+            [disabled]="formBus.invalid || loading">Guardar
+    </button>
+  </div>
+</mat-card>
+<mat-spinner *ngIf="loading" style="margin: 0px auto"></mat-spinner>

@@ -1,0 +1,44 @@
+.sidenav {
+  width: 250px;
+}
+
+.toggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 25px 0;
+}
+
+.toggle:hover {
+  cursor: pointer;
+}
+
+.nav .active-link {
+  background-color: #c39ce1;
+  border-left: solid 3px #8a16e8;
+}
+
+.nav .hover {
+  transition-duration: 400ms;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-property: transform, border, background-color;
+}
+
+.nav mat-list-item, a {
+  border: none;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  cursor: pointer;
+  background-color: #5a1294;
+  border-left: solid 3px #ffffff;
+}
+
+.nav mat-icon {
+  color: #8a16e8;
+  background-color: #ffffff;
+}
+
+

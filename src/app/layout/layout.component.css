@@ -1,0 +1,11 @@
+.barra {
+  background-color: #5a1294;
+  color: #eeeeee;
+  justify-content: space-between;
+}
+
+.content-container {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 25px;
+}

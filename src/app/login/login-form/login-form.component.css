@@ -1,0 +1,12 @@
+.input-form {
+  display: flex;
+}
+
+.mat-card-login {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  margin-top: 20px;
+}

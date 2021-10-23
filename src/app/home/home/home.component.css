@@ -1,0 +1,22 @@
+.example-card {
+  max-width: 1000px;
+}
+
+.example-header-image {
+  background-image: url('https://fotos.perfil.com/2021/08/25/carpnchos-1221694.jpg');
+  background-size: cover;
+}
+
+.botones {
+  background-color: #5a1294;
+  color: #ffffff;
+  *ngIf: "!loading";
+}
+
+h1 {
+  text-align: center;
+}
+
+img {
+  width: 100%;
+}

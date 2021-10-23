@@ -1,0 +1,83 @@
+<mat-card [formGroup]="formTrip" *ngIf="!loading">
+
+  <mat-form-field appearance="legacy" class="input-form">
+    <mat-label>Departure:</mat-label>
+    <input matInput formControlName="departure">
+    <ng-container *ngIf="fc.departure.invalid &&(fc.departure.dirty || fc.departure.touched)">
+      <mat-error *ngIf="fc.departure.errors?.required">
+        Este campo es requerido.
+      </mat-error>
+
+    </ng-container>
+  </mat-form-field>
+  <mat-form-field appearance="legacy" class="input-form">
+    <mat-label>Destination:</mat-label>
+    <input matInput formControlName="destination">
+    <ng-container *ngIf="fc.destination.invalid &&(fc.destination.dirty || fc.destination.touched)">
+      <mat-error *ngIf="fc.destination.errors?.required">
+        Este campo es requerido.
+      </mat-error>
+    </ng-container>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="input-form">
+    <mat-label>Bus:</mat-label>
+    <mat-select matInput formControlName="bus">
+
+      <mat-option *ngFor="let bus of buses" [value]="bus.getLicensePlate()">
+        {{"Patente: " + bus.getLicensePlate() + " | Marca y modelo: " + bus.getModel().getBrand().showName() + " / " + bus.getModel().showName()}}
+      </mat-option>
+
+    </mat-select>
+    <ng-container *ngIf="fc.bus.invalid &&(fc.bus.dirty || fc.bus.touched)">
+      <mat-error *ngIf="fc.bus.errors?.required">
+        Este campo es requerido.
+      </mat-error>
+
+    </ng-container>
+    <mat-hint *ngIf="(fc.id.value!==null)">El colectivo que posee actualmente es Patente: {{nameBuses}} Marca: {{nameBrand}}
+      Modelo: {{nameModel}}</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="input-form">
+    <mat-label>Fecha de salida</mat-label>
+    <input matInput formControlName="startDate" type="datetime-local">
+    <ng-container *ngIf="fc.startDate.invalid &&(fc.startDate.dirty || fc.startDate.touched)">
+      <mat-error *ngIf="fc.startDate.errors?.required">
+        Este campo es requerido.
+      </mat-error>
+      <mat-error *ngIf="fc.startDate.errors?.validateCurrentDate">
+        La fecha seleccionada debe ser mayo o igual a la actual
+      </mat-error>
+    </ng-container>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="input-form">
+    <mat-label>Fecha de llegada</mat-label>
+    <input matInput formControlName="endDate" type="datetime-local">
+
+    <ng-container *ngIf="fc.endDate.invalid &&(fc.endDate.dirty || fc.endDate.touched)" >
+      <mat-error *ngIf="fc.endDate.errors?.required">
+        Este campo es requerido.
+      </mat-error>
+      <mat-error *ngIf="fc.endDate.errors?.validateCurrentDate">
+        La fecha seleccionada debe ser mayo o igual a la actual
+      </mat-error>
+      <div id="mensajeError" *ngIf=" formTrip.hasError('validateDate')" class="error">
+        <mat-icon>error</mat-icon>
+        <p>La fecha de llegada debe ser mayor a la fecha de salida</p>
+      </div>
+    </ng-container>
+
+  </mat-form-field>
+
+
+
+  <div>
+    <button mat-button (click)="goToBack()">Volver</button>
+    <button mat-button color="primary" (click)="save()"
+            [disabled]="formTrip.invalid || loading">Guardar
+    </button>
+  </div>
+</mat-card>
+<mat-spinner *ngIf="loading" style="margin: 0px auto"></mat-spinner>
